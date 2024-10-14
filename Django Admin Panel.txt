@@ -1,0 +1,88 @@
+1.Create django project
+
+django-admin startproject project_name
+
+2.Navigate to project folder
+
+3.Start the development server
+python manage.py runserver
+
+Open your browser and go to http://127.0.0.1:8000/ to see the Django welcome page.
+
+4.Create an App
+python manage.py start myapp
+
+5.Add newly created App in seetings.py inside installed Apps
+
+6.Create Model
+myapp/model.py
+
+from django.db import models
+
+class Author(models.Model):
+	author_name=models.CharField(max_length=100)
+	book_title=models.CharField(max_length=100)
+
+       def __str__(self):
+		return self.author_name 
+      #Above two line we are using string function which is used to display object name in Django models which is visible in UI
+      so instead of return self.author_name i will do like return self.book_title it will display book title in Django admin panel UI
+
+7.Register Model with Admin
+myapp/admin.py
+
+The first line imports django.contrib.admin. It enables the Django admin for your project and allows you to access it at a 
+specific URL (/admin/) in your web browser.
+
+from django.contrib import admin
+from .models import Author
+
+admin.site.register.(Author)
+
+7.Apply Migrations
+ a)create migration for ur model
+     python manage.py makemigrations myapp
+ b)apply the migrations
+     python manage.py migrate
+
+8.Craete a Super User
+  python manage.py createsuperuser
+
+9.Data Bases
+
+by default inside settings.py we have sqlite data base 
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
+We can define our own database like below
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'postgres',  # your PostgreSQL username
+        'PASSWORD': 'mydb123',  # your PostgreSQL password
+        'HOST': 'localhost',  # Set to empty string for localhost
+        'PORT': '5433',  # Set to empty string for default
+    }
+}
+
+
+
+
+
+
+
+signal,trmplate,databse
+
+
+
